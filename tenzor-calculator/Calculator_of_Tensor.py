@@ -1,32 +1,19 @@
-import os
-import platform
+import asym
+import basis
+import multiply_t
+import sym
+
 from parser_t import *
 
 match(input("Выберете действие: \n 1 - Умножение тензоров \n 2 - Нахождение тензора в новом базисе \n 3 - Симметрирование \n 4 - Альтернирование \n q - Для выхода из программы \n")):
     case '1':
-        system = platform.system()
-        if system == 'Windows':
-            os.system('python multiply.py')
-        else:
-            os.system('python3 multiply.py')
+        multiply_t.multiplis()
     case '2':
-        system = platform.system()
-        if system == 'Windows':
-            os.system('python basis-new.py')
-        else:
-            os.system('python3 basis-new.py')
+        basis.basisn()
     case '3':
-        system = platform.system()
-        if system == 'Windows':
-            os.system('python sym.py')
-        else:
-            os.system('python3 sym.py')
+        sym.symming()
     case '4':
-        system = platform.system()
-        if system == 'Windows':
-            os.system('python asym.py')
-        else:
-            os.system('python3 asym.py')
+        asym.asymming()
     case ("q"):
         print()
 
