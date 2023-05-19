@@ -1,6 +1,6 @@
 from numpy import *
-import os
 from parser_t import *
+from systt import *
 
 def multiplis():
     clear()
@@ -18,6 +18,7 @@ def multiplis():
 
         a = input('Введите первый тензор через пробел: ')
         a = parse(a)
+
         for i in range (R):
             mas1.append(a[i])
         print(mas1)
@@ -181,3 +182,4 @@ def multiplis():
         case 4:
             clear()
             mul3x3()
+

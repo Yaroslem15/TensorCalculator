@@ -68,12 +68,3 @@ def matrixt(mas, a, R):
     mas = mas.reshape(R, R, R)
     return (mas)
 
-import os
-import platform
-
-def clear():
-    system = platform.system()
-    if system == 'Windows':
-        os.system('cls')
-    else:
-        os.system('clear')

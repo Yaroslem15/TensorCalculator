@@ -1,6 +1,8 @@
 from numpy import *
 from parser_t import *
-import os
+from systt import *
+
+
 def asymming():
     clear()
 
@@ -105,3 +107,4 @@ def asymming():
             asym()
         case 2:
             asym2()
+

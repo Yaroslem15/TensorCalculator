@@ -1,6 +1,7 @@
 from numpy import *
 from parser_t import *
-import os
+from systt import *
+
 def symming():
     clear()
 
@@ -103,7 +104,7 @@ def symming():
 
 
 
-    match (int(input("Выберете один из варианттов:\n 1 - Тензор однослойный \n 2 - Тензор многослойный \n " ))):
+    match (int(input("Выберете один из вариантов:\n 1 - Тензор однослойный \n 2 - Тензор многослойный \n " ))):
         case 1:
             sym()
         case 2:

@@ -1,6 +1,7 @@
 from numpy import *
-import os
 from parser_t import *
+from systt import *
+
 def basisn():    
     clear()
     
@@ -21,9 +22,14 @@ def basisn():
     
     c1 = matrixd(c1,c,R)
     
-    tas = dot(linalg.inv(b1),c1)
-    sas = dot(linalg.inv(c1),b1)
-    
+    try:
+        tas = dot(linalg.inv(b1),c1)
+        sas = dot(linalg.inv(c1),b1)
+    except ValueError:
+        print("Ошибка: некорректное значение, повторите попытку!")
+        clear()
+        basisn()
+        
     
     def layer1():
         global mas
@@ -237,3 +243,4 @@ def basisn():
             bsn3u()
         case('03'):
             bsn3d()
+
