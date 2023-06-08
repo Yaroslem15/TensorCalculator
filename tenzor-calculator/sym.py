@@ -32,7 +32,7 @@ def symming():
         for i in range(R*R):
             if i % R == 0:
                 print('\n')
-            print("{:.2f}".format(nasm1[i]), end=' ')
+            print("{:.5f}".format(nasm1[i]), end=' ')
 
     def sym2():
 
@@ -71,7 +71,7 @@ def symming():
             for j in range(R):
                 print ('\n')
                 for k in range(R):
-                    print("{:.2f}".format(nasm[i][j][k]), end=' ')
+                    print("{:.5f}".format(nasm[i][j][k]), end=' ')
 
     def syIK():
         for i in range(R):

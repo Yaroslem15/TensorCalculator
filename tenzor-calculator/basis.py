@@ -2,12 +2,13 @@ from numpy import *
 from parser_t import *
 from systt import *
 
+global mas
+mas = []
+
 def basisn():    
     clear()
-    
+
     R = int(input("Задайте размерность пространства: "))
-    
-    mas = []
     
     b = input('Введите старый базис через пробел (по строкам в одну линию): ')
     b = parse(b)
@@ -22,32 +23,17 @@ def basisn():
     
     c1 = matrixd(c1,c,R)
     
-    try:
-        tas = dot(linalg.inv(b1),c1)
-        sas = dot(linalg.inv(c1),b1)
-    except ValueError:
-        print("Ошибка: некорректное значение, повторите попытку!")
-        clear()
-        basisn()
-        
+    tas = dot(linalg.inv(b1),c1)
+    sas = dot(linalg.inv(c1),b1)
+
+    clear()
     
-    def layer1():
-        global mas
+    
+    def bsn1u1d(): # Не трогать!
         mas = []
         a = input('Введите тензор через пробел (по строкам в одну линию): ')
         a = parse(a)
         mas = matrixd(mas,a,R)
-    
-    def layer2():
-        global mas
-        mas = []
-        a = input('Введите тензор через пробел (по строкам в одну линию): ')
-        a = parse(a)
-        mas = matrixt(mas,a,R)
-    
-    
-    
-    def bsn1u1d(): # Не трогать!
         asm = []
         for i in range(R):
             for j in range(R):
@@ -66,6 +52,10 @@ def basisn():
                 print ("{:.2f}".format(asm[j][i]), end = ' ')
     
     def bsn2u():
+        mas = []
+        a = input('Введите тензор через пробел (по строкам в одну линию): ')
+        a = parse(a)
+        mas = matrixd(mas,a,R)
         asm = []
         for i in range(R):
             for j in range(R):
@@ -87,6 +77,12 @@ def basisn():
                 print ("{:.2f}".format(asm[j][i]), end = ' ')
     
     def bsn2d(): # Не трогать!
+        mas = []
+        a = input('Введите тензор через пробел (по строкам в одну линию): ')
+        print(tas)
+        print(sas)
+        a = parse(a)
+        mas = matrixd(mas,a,R)
         asm = []
         for i in range(R):
             for j in range(R):
@@ -94,10 +90,10 @@ def basisn():
                 for k in range(R):
                     for l in range(R):
                         am += tas[l][i] * mas[k][l] * tas[k][j]
+                print(f'a[{i+1}][{j+1}] = q[{k+1}][{l+1}] * tas[{l+1}][{i+1}] * tas[{k+1}][{j+1}]= {mas[k][l]}*{tas[l][i]}*{tas[k][j]}={am}')
                 asm.append(am)
         
         anim()
-        clear()
     
         print("Тензор:")
     
@@ -109,6 +105,10 @@ def basisn():
                 print ("{:.2f}".format(asm[j][i]), end = ' ')
     
     def bsn1u2d():
+        mas = []
+        a = input('Введите тензор через пробел (по строкам в одну линию): ')
+        a = parse(a)
+        mas = matrixt(mas,a,R)
         asm = []
         for i in range(R):
             for j in range(R):
@@ -117,25 +117,29 @@ def basisn():
                     for l in range(R):
                         for f in range(R):
                             for n in range(R):
-                                am += tas[n][i] * mas[l][f][n] * tas[f][j] * sas[k][l]
+                                am += mas[l][f][n] * tas[l][i] * tas[n][k] * sas[j][f]
+                    print(f'a[{i+1}][{j+1}][{k+1}] = q[{l+1}][{f+1}][{n+1}] * tas[{l+1}][{i+1}] * tas[{f+1}][{j+1}] * sas[{n+1}][{k+1}] = {mas[l][f][n]}*{tas[l][i]}*{tas[n][k]}*{sas[j][f]}={am}')
                     asm.append(am) 
     
         anim()
-        clear()
     
         print("Тензор:")
     
         asm = trix(asm, R)
     
         for i in range(R):
-            print('\n')
+            print('\n________')
             for j in range(R):
                 for k in range(R):
                     print ("{:.2f}".format(asm[k][i][j]), end = ' ')
-                    if (j == 0) and (k != 0):
-                        print("||", end='')
+                    if (k == R-1):
+                        print("|", end='')
     
     def bsn2u1d():
+        mas = []
+        a = input('Введите тензор через пробел (по строкам в одну линию): ')
+        a = parse(a)
+        mas = matrixt(mas,a,R)
         asm = []
         for i in range(R):
             for j in range(R):
@@ -163,6 +167,10 @@ def basisn():
                         print("||", end='')
     
     def bsn3u(): # не трогать!
+        mas = []
+        a = input('Введите тензор через пробел (по строкам в одну линию): ')
+        a = parse(a)
+        mas = matrixt(mas,a,R)
         asm = []
         for i in range(R):
             for j in range(R):
@@ -191,6 +199,10 @@ def basisn():
         
     
     def bsn3d():
+        mas = []
+        a = input('Введите тензор через пробел (по строкам в одну линию): ')
+        a = parse(a)
+        mas = matrixt(mas,a,R)
         asm = []
         for i in range(R):
             for j in range(R):
@@ -216,16 +228,6 @@ def basisn():
                     print ("{:.2f}".format(asm[k][i][j]), end = ' ')
                     if (j == 0) and (k != 0):
                         print("||", end='')
-        
-    
-    clear()
-    match(int(input("Выберете один из варианттов:\n 1 - Тензор однослойный \n 2 - Тензор многослойный \n "))):
-        case(1):
-            clear()
-            layer1()
-        case(2):
-            clear()
-            layer2()
     
     clear()
     match(input("Введите количество верхних и нижних регистров следующим образом без пробела (если есть только верхние или нижние, второе число запишите как 0): [верхний][нижний] \n")):
